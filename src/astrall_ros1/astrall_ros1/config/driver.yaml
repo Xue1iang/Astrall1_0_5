@@ -1,0 +1,38 @@
+heartbeat_period_ms: 100
+status_period_ms: 500
+auto_enable_sdk_auth: true
+# Start safely without changing posture. Enter MOVE only after FIXEDSTAND completes.
+auto_enter_move_mode: false
+cmd_vel_timeout_ms: 500
+# Maximum time allowed for FIXEDDOWN -> DAMPING full-down sequence.
+full_down_timeout_sec: 15.0
+max_vx: 1.0
+max_vy: 1.0
+max_vyaw: 1.0
+imu_topic: /imu/data
+# The SDK quaternion element order is undocumented. Its named Euler fields are
+# empirically degrees on this robot, so convert them explicitly to radians.
+imu_orientation_from_rpy: true
+imu_rpy_in_degrees: true
+# Preserve the sensor sampling intervals even when SDK callbacks arrive in bursts.
+use_sdk_imu_timestamp: true
+# Keep the SDK subscription enabled to request the H.264 stream. The FFmpeg
+# camera node owns /camera/image_raw and decodes UDP port 6000.
+camera_topic: /astrall/camera_sdk_raw
+camera_enabled: true
+# The camera API must register a callback. Keep its payload processing disabled
+# so it returns immediately; FFmpeg remains the ROS image publisher.
+camera_sdk_callback_enabled: false
+# Let the FFmpeg UDP receiver bind before resetting and enabling the stream.
+camera_stream_start_delay_sec: 1.0
+# Retry a temporarily rejected camera subscription for up to 30 seconds.
+camera_stream_retry_interval_sec: 2.0
+camera_stream_max_retries: 15
+camera_width: 640
+camera_height: 480
+camera_encoding: rgb8
+camera_frame_id: camera_link
+imu_frame_id: imu_link
+camera_freq: 25
+imu_freq: 250
+sport_freq: 250

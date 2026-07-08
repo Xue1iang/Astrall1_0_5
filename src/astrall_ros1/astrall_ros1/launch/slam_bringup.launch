@@ -1,0 +1,19 @@
+<launch>
+  <arg name="enable_camera" default="false"/>
+  <arg name="enable_rviz" default="true"/>
+  <arg name="enable_imu_preintegration" default="true"/>
+
+  <!-- The Astrall driver is the only process that initializes the vendor SDK. -->
+  <include file="$(find astrall_ros1)/launch/bringup.launch">
+    <arg name="enable_lidars" value="true"/>
+    <arg name="enable_camera" value="$(arg enable_camera)"/>
+  </include>
+
+  <!-- bringup.launch already publishes the base/IMU/lidar static transforms. -->
+  <include file="$(find lio_sam)/launch/run.launch">
+    <arg name="enable_robot_state_publisher" value="false"/>
+    <arg name="enable_navsat" value="false"/>
+    <arg name="enable_rviz" value="$(arg enable_rviz)"/>
+    <arg name="enable_imu_preintegration" value="$(arg enable_imu_preintegration)"/>
+  </include>
+</launch>

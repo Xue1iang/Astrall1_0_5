@@ -1,0 +1,14 @@
+<launch>
+  <arg name="enable_camera" default="true"/>
+  <arg name="enable_rviz" default="true"/>
+
+  <!-- Keep the Astrall SDK in one process and publish the robot sensor TFs. -->
+  <include file="$(find astrall_ros1)/launch/bringup.launch">
+    <arg name="enable_lidars" value="true"/>
+    <arg name="enable_camera" value="$(arg enable_camera)"/>
+  </include>
+
+  <include file="$(find fast_lio)/launch/mapping_airy96.launch">
+    <arg name="rviz" value="$(arg enable_rviz)"/>
+  </include>
+</launch>

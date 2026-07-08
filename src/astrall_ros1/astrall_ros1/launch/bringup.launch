@@ -1,0 +1,40 @@
+<launch>
+  <arg name="enable_lidars" default="true"/>
+  <arg name="enable_camera" default="true"/>
+  <arg name="camera_width" default="640"/>
+  <arg name="camera_height" default="480"/>
+  <arg name="camera_fps" default="25"/>
+  <node pkg="astrall_ros1" type="astrall_driver_node"
+        name="astrall_driver_node" output="screen">
+    <rosparam command="load" file="$(find astrall_ros1)/config/driver.yaml"/>
+    <param name="camera_enabled" value="$(arg enable_camera)"/>
+  </node>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="front_lidar_tf"
+        args="0.44 0 -0.03 0 1.57079632679 0 base_link front_lidar_link"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="rear_lidar_tf"
+        args="-0.30 0 0.35 3.14159 0 3.14159 base_link rear_lidar_link"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="imu_tf"
+        args="0 0 0 0 0 0 base_link imu_link"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera_tf"
+        args="0.20 0 0.30 0 0 0 base_link camera_link"/>
+
+  <group if="$(arg enable_camera)">
+    <node pkg="astrall_ros1" type="astrall_h264_camera_node"
+          name="astrall_h264_camera_node" output="screen" respawn="true">
+      <param name="udp_port" value="6000"/>
+      <param name="width" value="$(arg camera_width)"/>
+      <param name="height" value="$(arg camera_height)"/>
+      <param name="output_fps" value="$(arg camera_fps)"/>
+      <param name="frame_id" value="camera_link"/>
+      <param name="image_topic" value="/camera/image_raw"/>
+    </node>
+  </group>
+
+  <group if="$(arg enable_lidars)">
+    <node pkg="rslidar_sdk" type="rslidar_sdk_node"
+          name="rslidar_sdk_node" output="screen">
+      <param name="config_path" value="$(find astrall_ros1)/config/rslidar.yaml"/>
+    </node>
+  </group>
+</launch>

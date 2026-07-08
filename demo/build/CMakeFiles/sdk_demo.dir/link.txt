@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/sdk_demo.dir/src/keyboard.cpp.o CMakeFiles/sdk_demo.dir/src/main.cpp.o  -o sdk_demo  -Wl,-rpath,/home/agx/astrall_sdk_1_0_5/demo/lib -pthread ../lib/libASTRALL_SDK.so 

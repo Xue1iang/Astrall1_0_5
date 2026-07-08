@@ -1,0 +1,3 @@
+/home/agx/astrall_sdk_1_0_5/demo/build/CMakeFiles/rebuild_cache.dir
+/home/agx/astrall_sdk_1_0_5/demo/build/CMakeFiles/edit_cache.dir
+/home/agx/astrall_sdk_1_0_5/demo/build/CMakeFiles/sdk_demo.dir

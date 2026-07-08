@@ -1,0 +1,11 @@
+# Adapt these field names to the installed RoboSense ROS1 driver version.
+lidar:
+  name: rear_lidar
+  lidar_type: RS-LiDAR-AIRY
+  lidar_ip: 10.18.0.121
+  msop_port: 6969
+  difop_port: 7878
+  imu_port: 6868
+  frame_id: rear_lidar_link
+  pointcloud_topic: /rear/lidar_points
+  imu_topic: /rear/lidar_imu
