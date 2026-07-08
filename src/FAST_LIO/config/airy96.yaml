@@ -1,0 +1,49 @@
+common:
+    # Front RoboSense AIRY point cloud and the Astrall base IMU.
+    lid_topic: "/front/lidar_points"
+    imu_topic: "/imu/data"
+    map_frame: "map"
+    body_frame: "base_link"
+
+    # Both drivers use the host ROS clock. Do not enable FAST-LIO's coarse
+    # software synchronization unless measurements prove a clock offset.
+    time_sync_en: false
+    time_offset_lidar_to_imu: 0.0
+
+preprocess:
+    # The AIRY ROS1 message has Velodyne-compatible x/y/z/intensity/ring/time
+    # fields. Its per-point `time` is a relative offset in seconds.
+    lidar_type: 2
+    scan_line: 96
+    scan_rate: 10
+    timestamp_unit: 0
+    blind: 0.3
+
+mapping:
+    # Retain the conservative FAST-LIO defaults until this IMU has a dedicated
+    # Allan-variance calibration.
+    acc_cov: 0.1
+    gyr_cov: 0.1
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree: 180
+    det_range: 60.0
+
+    extrinsic_est_en: false
+    # Pose of front_lidar_link in the IMU/body frame. This matches
+    # bringup.launch: xyz [0.44, 0, -0.03], pitch +90 degrees.
+    extrinsic_T: [0.44, 0.0, -0.03]
+    extrinsic_R: [0, 0, 1,
+                  0, 1, 0,
+                 -1, 0, 0]
+
+publish:
+    path_en: true
+    scan_publish_en: true
+    dense_publish_en: false
+    scan_bodyframe_pub_en: true
+
+pcd_save:
+    # Continuous PCD accumulation can consume all available memory.
+    pcd_save_en: false
+    interval: -1
