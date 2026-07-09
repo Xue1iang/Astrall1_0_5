@@ -418,27 +418,6 @@ x, y, z, intensity, ring, time
 
 ---
 
-## Run LIO-SAM Bringup
-
-To run the robot driver, LiDAR, LIO-SAM and RViz together:
-
-```bash
-roslaunch astrall_ros1 slam_bringup.launch
-```
-
-Recommended procedure:
-
-```text
-1. Start the robot in a stable upright state.
-2. Keep the robot stationary during initialization.
-3. Launch slam_bringup.launch.
-4. Start keyboard teleoperation in another terminal.
-```
-
-If the robot starts prone, first use `bringup.launch` to stand the robot and enter MOVE mode, then start the SLAM launch file. Initializing LiDAR-Inertial SLAM during the stand-up transition may affect IMU preintegration and mapping quality.
-
----
-
 ## ROS Multi-Machine Usage
 
 If the robot onboard computer runs `roscore` and your laptop only subscribes to topics, configure the ROS network as follows.
