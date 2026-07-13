@@ -3,7 +3,7 @@
 Astrall1_0_5 is a ROS Noetic and C++ SDK workspace for the Astrall quadruped robot platform.
 The repository provides the Astrall SDK shared libraries, a standalone C++ SDK demo, and a ROS1 integration package for robot state publishing, motion command control, camera streaming, LiDAR access, and LiDAR-Inertial SLAM experiments.
 
-本仓库主要用于 Astrall 机器人在 Ubuntu / ROS Noetic 环境下的二次开发，包括 SDK 调用测试、ROS 话题桥接、键盘遥控、相机图像发布、RoboSense LiDAR 接入，以及 FAST-LIO / LIO-SAM 等建图功能集成。
+本repo主要用于 Astrall 机器人在 Ubuntu / ROS Noetic 环境下的二次开发，包括 SDK 调用测试、ROS 话题桥接、键盘遥控、相机图像发布、RoboSense LiDAR 接入，以及 FAST-LIO / LIO-SAM 等建图功能集成。
 
 ---
 
