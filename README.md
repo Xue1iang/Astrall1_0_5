@@ -533,9 +533,3 @@ Please confirm usage and redistribution permission before using this repository 
 ## Maintainer
 
 Xue1iang
-
-Repository:
-
-```text
-https://github.com/Xue1iang/Astrall1_0_5
-```
